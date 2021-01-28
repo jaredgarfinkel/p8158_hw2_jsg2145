@@ -44,12 +44,20 @@ data2 = read.csv("./data/genetictestingrawdata.csv") %>%
   mutate(across(.fns = as.numeric))
 
 df2 = data2 %>% 
-  select(c2, c4, c5, c6, c15) %>% 
-  mutate(c4 = 6 - c4)
+  select(c2, c4, c5, c6, c15)
+  # mutate(c4 = 6-c4)
 
-a = alpha(df2)
+a = alpha(df2, check.keys = TRUE)
 a
 ```
+
+```{r, include = FALSE}
+geneticparallel <- fa.parallel(df2, cor = "poly", fa= "pc")
+
+geneticparallel$pc.values
+geneticparallel$pc.sim
+```
+
 
 
 
