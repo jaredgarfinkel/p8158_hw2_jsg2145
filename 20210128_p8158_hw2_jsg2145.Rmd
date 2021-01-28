@@ -1,0 +1,55 @@
+---
+title: "20210128_p8158_hw2_jsg2145"
+author: "Jared Garfinkel"
+date: "1/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(viridis)
+library(psych)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	message = FALSE,
+	fig.width = 8, 
+  fig.height = 6,
+  out.width = "90%"
+)
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+```
+
+```{r, include = FALSE}
+data = read_csv("./data/genetictestingrawdata.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(across(.fns = as.numeric))
+```
+
+```{r, include = FALSE}
+df = data %>% 
+  select(c2, c4, c5, c6, c15) %>% 
+  mutate(c4 = 6 - c4)
+```
+
+```{r}
+data2 = read.csv("./data/genetictestingrawdata.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(across(.fns = as.numeric))
+
+df2 = data2 %>% 
+  select(c2, c4, c5, c6, c15) %>% 
+  mutate(c4 = 6 - c4)
+
+a = alpha(df2)
+a
+```
+
+
+
